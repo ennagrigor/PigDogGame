@@ -177,5 +177,5 @@ The game has 3 types of audio components:
 - The cheering: plays when player won.
 
 ## Link to ITCH.IO
-[Pig and Dog game](https://ennagrigor.itch.io/pigdoggamer)
+[Pig and Dog game](https://ennagrigor.itch.io/pigdoggame)
 
