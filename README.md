@@ -1,5 +1,5 @@
-# gamedev-05-q1
-Contains all the first question answers from lesson 5 homework: [gamedev-5780](https://github.com/erelsgl-at-ariel/gamedev-5780)
+# gamedev-07-q2
+Contains the second question (adding dramatic components): [gamedev-5780](https://github.com/erelsgl-at-ariel/gamedev-5780)
 
 **Created by:**
 
@@ -7,9 +7,9 @@ Contains all the first question answers from lesson 5 homework: [gamedev-5780](h
 
 [Enna Grigor](https://github.com/ennagrigor)
 
-<img src="Images/world.png" width=400>
+<img src="https://github.com/ennagrigor/PigDogGame/blob/master/Screenshot_1.png>
 
-## 1 Oscillator
+## The Pig
 
 Moves the object from one point to another. the user can choose in which
 way the object will move on the x and y axis. The speed will slow down as the object gets closer to the endpoints.
@@ -21,7 +21,7 @@ way the object will move on the x and y axis. The speed will slow down as the ob
 
 <img src="Images/q1.png" width=400> <img src="Images/1.1.png" width=400>
 
-## 2 Rotator
+## The Dogs
 
 Rotate an Object. 
 The user can add his own values to:
@@ -30,7 +30,7 @@ The user can add his own values to:
 
 <img src="Images/q2.png" width=400>
 
-## 3 Scale Changer
+## The Finish Line
 
 Increases and decreases the ball gradually.
 The user can add his own values to:
@@ -40,7 +40,7 @@ The user can add his own values to:
 
 <img src="Images/q3.1.png" width=400>  <img src="Images/q3.2.png" width=400>
 
-## 4 Circular Motion
+## Animation 
 
 Moves the ball in a circular form.
 In order to move the ball around you can use the arrow keys (<- and ->)
@@ -48,5 +48,7 @@ The user can add his own values to:
 - `Speed` - Determine the speed of the movement.
 - `Radius` - The distance between the current x position to the center of the circle.
 (The center of the circle is positionX + radius).
+
+## Audio
 
 <img src="Images/q4.1.png" width=400> <img src="Images/q4.2.png" width=400>
