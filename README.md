@@ -38,6 +38,7 @@ if (Input.GetKey(KeyCode.RightArrow) || (Input.GetKey(KeyCode.LeftArrow)))
             animator.Play("Idle");
         }
 ```
+
 The pig also has borders so he can not go out of screen and is bounded within the game.
 The borders are set with the transform component while checking if passed them.
 
@@ -59,6 +60,7 @@ if (transform.position.y >= 6)
             transform.position = new Vector3(-9.2f, transform.position.y, 0);
         }
 ```
+
 The pig has a damage function which checks if the player is dead and keeps track of lives, 
 and if dead returns the pig back to the beginning and starts the count over.
 
@@ -75,35 +77,105 @@ public void Damage()
             }
         }
 ```
+The pig also has a win function that only destroys the object of pig (once the player wins):
+
+```C#
+public void Win()
+        {
+            Destroy(this.gameObject);
+        }
+```
 
 ## The Dogs
 
-Rotate an Object. 
-The user can add his own values to:
-- `Position x, y, z` - Determine how the object will rotate on each axis.
-- `Speed` - The speed of the rotation.
+The dogs are prefabs that make up the enemy in this game.
+They are also an animation that goes across the screen and reappears in loops.
+once the pig hits the dog - the dog turns into an explosion to indicate that it has been hit and triggers a bark audio.
 
-<img src="Images/q2.png" width=400>
+The borders are set in the code like this and activates the dog animation once it returns to the beginning:
+
+```C#
+if (transform.position.x >= 10)
+        {
+            transform.position = new Vector3(-10, transform.position.y, 0);
+            animator.Play("Dog Run");
+        }
+```
+
+The dog is also a trigger (when the pig colides with the dog) that activates the damage function in pig, 
+changes anitation to explosion and plays the barking audio:
+
+```C#
+private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "PlayerPig")
+        {
+            other.transform.GetComponent<Mover>().Damage();
+            animator = GetComponent<Animator>();
+            animator.Play("Explosion");
+            audioSource.Play(); 
+        }
+    }
+```
+
+<img src="Ihttps://github.com/ennagrigor/PigDogGame/blob/master/Screenshot_3.png" width=400>
+
+## Obsticles
+
+There are two types of obsticles: bushes and fences. 
+the pig can not move across them and has to go around.
+There are also flowers in the game but the do not act like obsticals - the pig can go across them.
+
 
 ## The Finish Line
 
-Increases and decreases the ball gradually.
-The user can add his own values to:
-- `Max size` - The maximum size the ball can reach.
-- `Min size` - The minimum size the ball can reach.
-- `Speed` - The speed at which the ball is decreasing and increasing.
+The finish line is an object that has a trigger.
+Once the pig colides with it - it triggers a canvas object and audio to let the player know they won.
+In the code it is done like this:
 
-<img src="Images/q3.1.png" width=400>  <img src="Images/q3.2.png" width=400>
+```C#
+private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "PlayerPig")
+        {
+            _YouWonText.gameObject.SetActive(true);         // activates win text
+            other.transform.GetComponent<Mover>().Win();    // destroys player pig
+            audioSource.Play();                             // activates audio
+        } 
+    }
+```
+
+In the finish line there is also an option to start over the game:
+
+```C#
+if (Input.GetKeyDown(KeyCode.R))
+        {
+            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        }
+```
+
+<img src="https://github.com/ennagrigor/PigDogGame/blob/master/Screenshot_2.png" width=400>  
 
 ## Animation 
 
-Moves the ball in a circular form.
-In order to move the ball around you can use the arrow keys (<- and ->)
-The user can add his own values to:
-- `Speed` - Determine the speed of the movement.
-- `Radius` - The distance between the current x position to the center of the circle.
-(The center of the circle is positionX + radius).
+There are 3 main animation that are featured in the game:
+
+### The pig (also rotated to make the pig go up/down):
+<img src="https://github.com/ennagrigor/PigDogGame/blob/master/Screenshot_5.png" width=400>
+
+### The dog:
+<img src="https://github.com/ennagrigor/PigDogGame/blob/master/Screenshot_6.png" width=400>
+
+### The Explosion:
+<img src="https://github.com/ennagrigor/PigDogGame/blob/master/Screenshot_4.png" width=400>
 
 ## Audio
 
-<img src="Images/q4.1.png" width=400> <img src="Images/q4.2.png" width=400>
+The game has 3 types of audio components:
+- The background music: plays throughout the game.
+- The barking: plays when pig hits a dog.
+- The cheering: plays when player won.
+
+## Link to ITCH.IO
+[Pig and Dog game](https://ennagrigor.itch.io/pigdoggamer)
+
